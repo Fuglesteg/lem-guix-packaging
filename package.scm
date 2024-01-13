@@ -254,15 +254,14 @@
                          (url "https://github.com/lem-project/lem")
                          (commit commit)))
                   (sha256 
-                    (base32 "0a1n1jznc0hc8lngmn5vlpnmw1xmw2vv1cgxp3a59f7qc5bd0smr"))
+                    (base32 "0fpi72d732s04sndmmranniw2ayyqss4h66149gq47b4rpaahcmq"))
                   (file-name (git-file-name "sbcl-lem" version))))
         (build-system asdf-build-system/sbcl)
         (outputs '("out" "lib"))
         (arguments
-          (list
-            #:asd-systems (list "lem-sdl2" "lem-base")
+          '(#:asd-systems '("lem-sdl2/executable")
             #:phases
-            #~(modify-phases %standard-phases
+            (modify-phases %standard-phases
                              (add-after 'unpack 'override-ql
                                         (lambda* _
                                                  (substitute* (find-files (getcwd) "\\.lisp$")
@@ -275,6 +274,7 @@
                                                  (build-program
                                                    (string-append (assoc-ref outputs "out") "/bin/lem")
                                                    outputs
+                                                   #:dependencies '("lem-sdl2")
                                                    #:entry-program '((lem:main) 0)))))))
         (inputs
           (list cl-sdl2
