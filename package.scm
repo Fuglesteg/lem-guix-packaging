@@ -101,41 +101,6 @@
               (file-name (git-file-name "sbcl-lem-async-process" version))))
           (build-system asdf-build-system/source))))
 
-; (define-public sbcl-qlot
-;     (let ((commit "8e3d533a8aae864cb5a146a256fc688e27ea239f"))
-;         (package
-;         (name "qlot")
-;         (version "1.2")
-;         (source
-;                 (origin
-;                   (method git-fetch)
-;                   (uri (git-reference
-;                          (url "https://github.com/fukamachi/qlot")
-;                          (commit commit)))
-;                   (sha256 
-;                     (base32 "021mi14v6fs01y5d84grfrkc6adfyld4khigr42lkhhahjmwpx3l"))
-;                   (file-name (git-file-name "sbcl-qlot" version))))
-;         (build-system copy-build-system)
-;         (arguments
-;           (list 
-;             #:phases
-;             #~(modify-phases %standard-phases
-;                 (add-after 'unpack 'build
-;                     (lambda _
-;                       (invoke "ls" "-lah" "scripts")
-;                       (invoke "cat" "scripts/setup.sh")
-;                       (invoke "chmod" "+x" "scripts/setup.sh")
-;                       (invoke "./scripts/setup.sh")
-;                       (invoke "mv" "./scripts/run.sh" "./scripts/qlot")
-;                       (invoke "chmod" "+x" "./scripts/qlot"))))))
-;         (inputs 
-;           (list openssl
-;                 sbcl))
-;         (synopsis "Lem is an IDE for common lisp")
-;         (description "IDE for common lisp yay")
-;         (home-page "https://www.gnu.org/software/hello/")
-;         (license license:gpl3+))))
-
 (define-public sbcl-sblint
     (let ((commit "1037296f604c3210ce073a53539d4ae95b0c2f8c"))
         (package
