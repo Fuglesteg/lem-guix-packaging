@@ -20,7 +20,7 @@
         (package
           (version "1.0")
           (synopsis "thing")
-          (description "thingy")
+          (description "A simple semaphore class for Bordeaux-Threads inspired by SBCL's semaphore.")
           (license license:gpl3+)
           (home-page "https://lem.org")
           (name "bt-semaphore")
