@@ -263,32 +263,9 @@
                 sbcl-split-sequence
                 sbcl-cl-str
                 cl-bordeaux-threads
-                cl-queues
-                sbcl-dexador
-                sbcl-sblint))
-        (native-inputs
-          (list cl-sdl2
-                cl-sdl2-image
-                cl-sdl2-ttf
-                cl-rove
-                cl-closer-mop
-                cl-trivia
-                cl-trivial-types
-                sbcl-lem-mailbox
-                sbcl-bt-semaphore
-                sbcl-lem-base16-themes
-                sbcl-lem-async-process
-                sbcl-micros
-                sbcl-inquisitor
                 sbcl-jsonrpc
                 sbcl-esrap
                 sbcl-parse-number
-                sbcl
-                sbcl-yason
-                sbcl-log4cl
-                sbcl-split-sequence
-                sbcl-cl-str
-                cl-bordeaux-threads
                 cl-queues
                 sbcl-dexador
                 sbcl-sblint))
