@@ -190,8 +190,8 @@ supplies its own built-in semaphores. It is reccomended to use those instead.")
       (license license:expat))))
 
 (define-public sbcl-jsonrpc
-  (let ((commit "28c4c962cfe936c7cd00dcab3bcae47b6f9de071")
-        (revision "0"))
+  (let ((commit "035ba8a8f2e9b9968786ee56b59c7f8afbea9ca2")
+        (revision "1"))
     (package
       (name "sbcl-jsonrpc")
       (version (git-version "0.0.0" revision commit))
@@ -203,7 +203,7 @@ supplies its own built-in semaphores. It is reccomended to use those instead.")
                (commit commit)))
          (file-name (git-file-name "jsonrpc" version))
          (sha256
-          (base32 "0sikr1mqh8kl2fg11iwvs3f51vrkli1chdqlpw3lazd4bviidfrc"))))
+          (base32 "00axmjd81j4pf1pmvwbkcyr5lr9v7n16zqnazpf5vp86x4lvp0yy"))))
       (build-system asdf-build-system/sbcl)
       (native-inputs
        (list sbcl-rove))
