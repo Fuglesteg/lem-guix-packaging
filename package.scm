@@ -264,7 +264,7 @@ encoding/end-of-line detection and external-format abstraction for Common Lisp."
                (url "https://github.com/lem-project/lem/")
                (commit commit)))
          (sha256
-          (base32 "11i36d77zlb0ycy58cmmad3cnqfpg3q9nlvml9lsdidvndshb1wn"))
+          (base32 "1p9i3111ybhbjnv0h3xmygcxrlja1h68hpmyhxhjq5gjwmwg5hv8"))
          (file-name (git-file-name name version))
          (snippet #~(begin
                       (use-modules (guix build utils))
