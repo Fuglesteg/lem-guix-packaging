@@ -1,18 +1,18 @@
-(use-modules
- (guix packages)
- (guix git-download)
- (guix build-system asdf)
- (guix build-system copy)
- ((guix licenses) #:prefix license:)
- (guix gexp)
- (gnu packages base)
- (gnu packages tls)
- (gnu packages version-control)
- (gnu packages gnupg)
- (gnu packages lisp)
- (gnu packages commencement)
- (gnu packages lisp-check)
- (gnu packages lisp-xyz))
+(use-modules (guix packages)
+             (guix git-download)
+             (guix build-system asdf)
+             (guix build-system copy)
+             ((guix licenses)
+              #:prefix license:)
+             (guix gexp)
+             (gnu packages base)
+             (gnu packages tls)
+             (gnu packages version-control)
+             (gnu packages gnupg)
+             (gnu packages lisp)
+             (gnu packages commencement)
+             (gnu packages lisp-check)
+             (gnu packages lisp-xyz))
 
 (define sbcl-iconv
   (let ((commit "54900c3f00e19da15a9c65451bddde839d0a7f75")
@@ -30,10 +30,7 @@
          (sha256
           (base32 "1lpw95c02inifhdh9kkab9q92i5w9zd788dww1wly2p0a6kyx9wg"))))
       (build-system asdf-build-system/sbcl)
-      (inputs
-       (list
-        sbcl-cffi
-        libiconv))
+      (inputs (list sbcl-cffi libiconv))
       (home-page "https://github.com/quek/cl-iconv")
       (synopsis "iconv(man 3 iconv) library for Common Lisp")
       (description
@@ -57,13 +54,12 @@ character encodings using iconv.")
          (sha256
           (base32 "0g1b89yj6n42ayf2074krk3h9yvglqxn54a6i3sxgpsqww2ll2a1"))))
       (build-system asdf-build-system/sbcl)
-      (inputs
-       (list sbcl-cffi))
-      (native-inputs
-       (list sbcl-fiveam))
+      (inputs (list sbcl-cffi))
+      (native-inputs (list sbcl-fiveam))
       (home-page "https://github.com/shamazmazum/cl-setlocale")
       (synopsis "Wrapper around setlocale(3) usable with other CFFI libraries")
-      (description "This library is a tiny wrapper around setlocale(3)
+      (description
+       "This library is a tiny wrapper around setlocale(3)
 and can be used in conjunction with other FFI wrappers like cl-charms.")
       (license license:bsd-2))))
 
@@ -83,14 +79,8 @@ and can be used in conjunction with other FFI wrappers like cl-charms.")
           (base32 "1qh9yq9ks0paplmbx0vj4nynx86igkv9kli396plpg9vc14qdgl5"))
          (file-name (git-file-name "cl-lem-mailbox" version))))
       (build-system asdf-build-system/sbcl)
-      (inputs
-       (list
-        sbcl-bordeaux-threads
-        sbcl-bt-semaphore
-        sbcl-queues))
-      (native-inputs
-       (list
-        sbcl-rove))
+      (inputs (list sbcl-bordeaux-threads sbcl-bt-semaphore sbcl-queues))
+      (native-inputs (list sbcl-rove))
       (synopsis "ANSI CL adaptation of the SBCL mailbox utility")
       (description "ANSI CL adaptation of the SBCL mailbox utilty.
 Tested on ABCL, but should work on any implementation.")
@@ -110,19 +100,16 @@ Tested on ABCL, but should work on any implementation.")
                (url "https://github.com/lem-project/micros")
                (commit commit)))
          (sha256
-          (base32
-           "13hwx7swlibk9wbix1jfjw23bmwpjq46lh405386w8l95p5ga322"))
+          (base32 "13hwx7swlibk9wbix1jfjw23bmwpjq46lh405386w8l95p5ga322"))
          (file-name (git-file-name "micros" version))
          (snippet #~(begin
                       (use-modules (guix build utils))
                       (substitute* "lsp-api.lisp"
-                        (("ql:quickload") "asdf:load-systems"))))))
+                        (("ql:quickload")
+                         "asdf:load-systems"))))))
       (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list
-        sbcl-rove))
-      (synopsis
-       "SLIME/SWANK implementation for the Lem editor")
+      (native-inputs (list sbcl-rove))
+      (synopsis "SLIME/SWANK implementation for the Lem editor")
       (description
        "Micros is a SLIME/SWANK implementation meant for use by
 the Lem editor for Common Lisp. Breaking changes in SLIME/SWANK
@@ -146,8 +133,7 @@ led Lem to maintain it's own fork to ease maintainance burden.")
          (sha256
           (base32 "1m2sfgfg6c0gqqy1pqsahsiw3j25y473mfw7sx0akkqbhwhm7mjb"))))
       (build-system asdf-build-system/sbcl)
-      (inputs
-       (list sbcl-cffi))
+      (inputs (list sbcl-cffi))
       (home-page "https://github.com/lem-project/async-process")
       (synopsis "Asynchronous process execution for Common Lisp")
       (description "This library provides an asynchronous process
@@ -163,23 +149,16 @@ execution mechanism for Common Lisp.")
       (source
        (origin
          (method git-fetch)
-         (uri
-          (git-reference
-           (url "https://github.com/r-moeritz/bt-semaphore")
-           (commit commit)))
+         (uri (git-reference
+               (url "https://github.com/r-moeritz/bt-semaphore")
+               (commit commit)))
          (sha256
-          (base32
-           "0rl7yp36225z975hg069pywwlpchwn4086cgxwsi2db5mhghpr7l"))
+          (base32 "0rl7yp36225z975hg069pywwlpchwn4086cgxwsi2db5mhghpr7l"))
          (file-name (git-file-name "cl-bt-semaphore" version))))
       (build-system asdf-build-system/sbcl)
-      (inputs
-       (list
-        sbcl-bordeaux-threads))
-      (native-inputs
-       (list
-        sbcl-clunit))
-      (synopsis
-       "Semaphore implementation for @code{bordeaux-threads}")
+      (inputs (list sbcl-bordeaux-threads))
+      (native-inputs (list sbcl-clunit))
+      (synopsis "Semaphore implementation for @code{bordeaux-threads}")
       (description
        "@code{bt-semaphore} is a semaphore implementation for use with
 @code{bordeaux-threads}.
@@ -205,22 +184,19 @@ supplies its own built-in semaphores. It is reccomended to use those instead.")
          (sha256
           (base32 "00axmjd81j4pf1pmvwbkcyr5lr9v7n16zqnazpf5vp86x4lvp0yy"))))
       (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list sbcl-rove))
-      (inputs
-       (list
-        sbcl-clack
-        sbcl-http-body
-        sbcl-lack
-        sbcl-yason
-        sbcl-bordeaux-threads
-        sbcl-event-emitter
-        sbcl-alexandria
-        sbcl-dissect
-        sbcl-chanl
-        sbcl-vom
-        sbcl-usocket
-        sbcl-websocket-driver))
+      (native-inputs (list sbcl-rove))
+      (inputs (list sbcl-clack
+                    sbcl-http-body
+                    sbcl-lack
+                    sbcl-yason
+                    sbcl-bordeaux-threads
+                    sbcl-event-emitter
+                    sbcl-alexandria
+                    sbcl-dissect
+                    sbcl-chanl
+                    sbcl-vom
+                    sbcl-usocket
+                    sbcl-websocket-driver))
       (home-page "https://github.com/cxxxr/jsonrpc")
       (synopsis "JSON-RPC 2.0 server/client for Common Lisp")
       (description "This package provides a JSON-RPC 2.0
@@ -241,20 +217,13 @@ server/client for Common Lisp.")
                (commit commit)))
          (file-name (git-file-name name version))
          (sha256
-          (base32
-           "08rkmqnwlq6v84wcz9yp31j5lxrsy33kv3dh7n3ccsg4kc54slzw"))))
+          (base32 "08rkmqnwlq6v84wcz9yp31j5lxrsy33kv3dh7n3ccsg4kc54slzw"))))
       (build-system asdf-build-system/sbcl)
-      (native-inputs
-       (list
-        sbcl-prove
-        sbcl-babel))
-      (inputs
-       (list
-        sbcl-flexi-streams
-        sbcl-alexandria
-        sbcl-anaphora))
+      (native-inputs (list sbcl-prove sbcl-babel))
+      (inputs (list sbcl-flexi-streams sbcl-alexandria sbcl-anaphora))
       (home-page "https://github.com/t-sin/inquisitor")
-      (synopsis "Encoding/end-of-line detection and external-format abstraction for Common Lisp")
+      (synopsis
+       "Encoding/end-of-line detection and external-format abstraction for Common Lisp")
       (description
        "Inquisitor is a cross-implementation library provding
 encoding/end-of-line detection and external-format abstraction for Common Lisp.")
@@ -270,8 +239,9 @@ encoding/end-of-line detection and external-format abstraction for Common Lisp."
       (source
        (origin
          (method git-fetch)
-         (uri (git-reference (url "https://github.com/lem-project/lem-base16-themes")
-                             (commit commit)))
+         (uri (git-reference
+               (url "https://github.com/lem-project/lem-base16-themes")
+               (commit commit)))
          (file-name (git-file-name name version))
          (sha256
           (base32 "0hqscypvp5rd8qiwwqh46lip0rjg4bpggjf7sjff7qxgimylk1aj"))))
@@ -294,8 +264,7 @@ encoding/end-of-line detection and external-format abstraction for Common Lisp."
                (url "https://github.com/lem-project/lem/")
                (commit commit)))
          (sha256
-          (base32
-           "11i36d77zlb0ycy58cmmad3cnqfpg3q9nlvml9lsdidvndshb1wn"))
+          (base32 "11i36d77zlb0ycy58cmmad3cnqfpg3q9nlvml9lsdidvndshb1wn"))
          (file-name (git-file-name name version))
          (snippet #~(begin
                       (use-modules (guix build utils))
@@ -304,77 +273,79 @@ encoding/end-of-line detection and external-format abstraction for Common Lisp."
       (build-system asdf-build-system/sbcl)
       (outputs '("out" "ncurses"))
       (arguments
-       '(#:asd-systems '("lem-sdl2/executable"
-                         "lem-ncurses")
-         #:phases
-         (modify-phases %standard-phases
-           (add-after 'unpack 'override-ql
-             (lambda* _
-               (substitute* (find-files (getcwd) "\\.lisp$")
-                 (("ql:quickload") "asdf:load-systems"))))
-           (add-after 'override-ql 'redirect-home
-             (lambda _
-               (setenv "HOME" "/tmp")))
-           (add-after 'create-asdf-configuration 'build-program
-             (lambda* (#:key outputs #:allow-other-keys)
-               (begin (build-program
-                       (string-append (assoc-ref outputs "out") "/bin/lem")
-                       outputs
-                       #:dependencies '("lem-sdl2")
-                       #:entry-program '((lem:main) 0))
-                      (build-program
-                       (string-append (assoc-ref outputs "ncurses") "/bin/lem")
-                       outputs
-                       #:dependencies '("lem-ncurses")
-                       #:entry-program '((lem:main) 0))))))))
-      (inputs
-       (list
-        ;; lem.asd
-        sbcl-alexandria
-        sbcl-trivia
-        sbcl-trivial-gray-streams
-        sbcl-trivial-types
-        sbcl-cl-ppcre
-        sbcl-closer-mop
-        sbcl-iterate
-        sbcl-micros
-        sbcl-lem-mailbox
-        sbcl-inquisitor
-        sbcl-babel
-        sbcl-bordeaux-threads
-        sbcl-yason
-        sbcl-log4cl
-        sbcl-split-sequence
-        sbcl-cl-str
-        sbcl-dexador
-        ;; lem-sdl2
-        sbcl-sdl2
-        sbcl-sdl2-ttf
-        sbcl-sdl2-image
-        ;; lem-ncurses
-        sbcl-cffi
-        sbcl-cl-charms
-        sbcl-cl-setlocale
-        ;; lem-language-server
-        sbcl-log4cl
-        sbcl-jsonrpc
-        sbcl-usocket
-        sbcl-quri
-        sbcl-cl-change-case
-        sbcl-async-process
-        ;; lem-encodings-table
-        sbcl-iconv
-        ;; lem-vi-mode
-        sbcl-esrap
-        sbcl-parse-number
-        sbcl-cl-package-locks
-        ;; lem-scheme-mode
-        sbcl-slime-swank
-        ;; lem-jsonrpc
-        sbcl-trivial-utf-8
-        lem-base16-themes))
-      (native-inputs
-       (list sbcl-rove))
+       '(#:asd-systems '("lem-sdl2/executable" "lem-ncurses")
+         #:phases (modify-phases %standard-phases
+                    (add-after 'unpack 'override-ql
+                      (lambda* _
+                        (substitute* (find-files (getcwd) "\\.lisp$")
+                          (("ql:quickload")
+                           "asdf:load-systems"))))
+                    (add-after 'override-ql 'redirect-home
+                      (lambda _
+                        (setenv "HOME" "/tmp")))
+                    (add-after 'create-asdf-configuration 'build-program
+                      (lambda* (#:key outputs #:allow-other-keys)
+                        (begin
+                          (build-program (string-append (assoc-ref outputs
+                                                                   "out")
+                                                        "/bin/lem")
+                                         outputs
+                                         #:dependencies '("lem-sdl2")
+                                         #:entry-program '((lem:main)
+                                                           0))
+                          (build-program (string-append (assoc-ref outputs
+                                                                   "ncurses")
+                                                        "/bin/lem")
+                                         outputs
+                                         #:dependencies '("lem-ncurses")
+                                         #:entry-program '((lem:main)
+                                                           0))))))))
+      (inputs (list
+               ;; lem.asd
+               sbcl-alexandria
+               sbcl-trivia
+               sbcl-trivial-gray-streams
+               sbcl-trivial-types
+               sbcl-cl-ppcre
+               sbcl-closer-mop
+               sbcl-iterate
+               sbcl-micros
+               sbcl-lem-mailbox
+               sbcl-inquisitor
+               sbcl-babel
+               sbcl-bordeaux-threads
+               sbcl-yason
+               sbcl-log4cl
+               sbcl-split-sequence
+               sbcl-cl-str
+               sbcl-dexador
+               ;; lem-sdl2
+               sbcl-sdl2
+               sbcl-sdl2-ttf
+               sbcl-sdl2-image
+               ;; lem-ncurses
+               sbcl-cffi
+               sbcl-cl-charms
+               sbcl-cl-setlocale
+               ;; lem-language-server
+               sbcl-log4cl
+               sbcl-jsonrpc
+               sbcl-usocket
+               sbcl-quri
+               sbcl-cl-change-case
+               sbcl-async-process
+               ;; lem-encodings-table
+               sbcl-iconv
+               ;; lem-vi-mode
+               sbcl-esrap
+               sbcl-parse-number
+               sbcl-cl-package-locks
+               ;; lem-scheme-mode
+               sbcl-slime-swank
+               ;; lem-jsonrpc
+               sbcl-trivial-utf-8
+               lem-base16-themes))
+      (native-inputs (list sbcl-rove))
       (synopsis "Integrated IDE/editor for Common Lisp")
       (description "TODO")
       (home-page "http://lem-project.github.io/")
