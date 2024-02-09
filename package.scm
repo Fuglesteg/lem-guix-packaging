@@ -282,11 +282,11 @@ encoding/end-of-line detection and external-format abstraction for Common Lisp."
       (license license:expat))))
 
 (define lem
-  (let ((commit "b7ddbbca82abf892a2916ad041d0bcd6d5794571")
-        (revision "1"))
+  (let ((commit "e366bda73b7e5263cf9ba19678f9b958df48332b")
+        (revision "0"))
     (package
       (name "lem")
-      (version (git-version "2.1.0" revision commit))
+      (version (git-version "2.2.0" revision commit))
       (source
        (origin
          (method git-fetch)
