@@ -88,7 +88,7 @@ Tested on ABCL, but should work on any implementation.")
       (license license:expat))))
 
 (define-public sbcl-micros
-  (let ((commit "23f52d5349382d3d50c855b75a665f3158286390")
+  (let ((commit "9fc7f1e5b0dbf1b9218a3f0aca7ed46e90aa86fd")
         (revision "1"))
     (package
       (name "sbcl-micros")
@@ -100,7 +100,7 @@ Tested on ABCL, but should work on any implementation.")
                (url "https://github.com/lem-project/micros")
                (commit commit)))
          (sha256
-          (base32 "13hwx7swlibk9wbix1jfjw23bmwpjq46lh405386w8l95p5ga322"))
+          (base32 "1p0s7a723w56vcgrbc7hgmkhnmjcb8nmc59im2wx9inm1la6mcbc"))
          (file-name (git-file-name "micros" version))
          (snippet #~(begin
                       (use-modules (guix build utils))
