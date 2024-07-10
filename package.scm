@@ -276,7 +276,7 @@ encoding/end-of-line detection and external-format abstraction for Common Lisp."
        '(#:asd-systems '("lem-sdl2/executable" "lem-ncurses")
          #:phases (modify-phases %standard-phases
                     (add-after 'unpack 'override-ql
-                      (lambda* _
+                      (lambda _
                         (substitute* (find-files (getcwd) "\\.lisp$")
                           (("ql:quickload")
                            "asdf:load-systems"))))
