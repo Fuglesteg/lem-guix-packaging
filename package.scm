@@ -280,7 +280,11 @@ encoding/end-of-line detection and external-format abstraction for Common Lisp."
                         (substitute* (find-files (getcwd) "\\.lisp$")
                           (("ql:quickload")
                            "asdf:load-systems"))))
-                    (add-after 'override-ql 'redirect-home
+                    (add-after 'override-ql 'set-default-implementation
+                               (lambda _
+                                 (substitute* "extensions/lisp-mode/implementation.lisp" 
+                                              (("\\*default-command\\* nil") "*default-command* \"sbcl\""))))
+                    (add-after 'set-default-implementation 'redirect-home
                       (lambda _
                         (setenv "HOME" "/tmp")))
                     (add-after 'create-asdf-configuration 'build-program
