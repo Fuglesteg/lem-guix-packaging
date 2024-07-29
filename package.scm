@@ -164,7 +164,7 @@ execution mechanism for Common Lisp.")
 @code{bordeaux-threads}.
 
 Since version 0.8.6, @code{bordeaux-threads}
-supplies its own built-in semaphores. It is reccomended to use those instead.")
+supplies its own built-in semaphores. It is recommended to use those instead.")
       (home-page "https://github.com/r-moeritz/bt-semaphore")
       (license license:expat))))
 
