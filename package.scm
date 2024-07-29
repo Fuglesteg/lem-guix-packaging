@@ -169,7 +169,7 @@ supplies its own built-in semaphores. It is reccomended to use those instead.")
       (license license:expat))))
 
 (define-public sbcl-jsonrpc
-  (let ((commit "035ba8a8f2e9b9968786ee56b59c7f8afbea9ca2")
+  (let ((commit "62e25f0e0059e57e6ab4abe677e466a76052c439")
         (revision "1"))
     (package
       (name "sbcl-jsonrpc")
@@ -182,7 +182,7 @@ supplies its own built-in semaphores. It is reccomended to use those instead.")
                (commit commit)))
          (file-name (git-file-name "jsonrpc" version))
          (sha256
-          (base32 "00axmjd81j4pf1pmvwbkcyr5lr9v7n16zqnazpf5vp86x4lvp0yy"))))
+          (base32 "0d3fl9jis6jfgx9mfbgyam9nb8smqxqd0ch9b61i3h73fcyp4211"))))
       (build-system asdf-build-system/sbcl)
       (native-inputs (list sbcl-rove))
       (inputs (list sbcl-clack
@@ -202,6 +202,155 @@ supplies its own built-in semaphores. It is reccomended to use those instead.")
       (description "This package provides a JSON-RPC 2.0
 server/client for Common Lisp.")
       (license license:bsd-2))))
+
+(define-public sbcl-trivial-utf-8
+  (let ((commit "ba9b4ff11396a26dd7455ebfd426c07d7036e6be")
+        (revision "0"))
+    (package
+      (name "sbcl-trivial-utf-8")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/fukamachi/trivial-utf-8")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1jz27gz8gvqdmvp3k9bxschs6d5b3qgk94qp2bj6nv1d0jc3m1l1"))))
+      (build-system asdf-build-system/sbcl)
+      (arguments
+       '(#:asd-systems '("trivial-utf-8")))
+      (home-page "https://github.com/fukamachi/trivial-utf-8")
+      (synopsis "Common Lisp library for reading and writing UTF-8")
+      (description "This is a library that provides functions for reading and writing UTF-8 bytes.")
+      (license license:bsd-2))))
+
+(define-public sbcl-hunchensocket
+  (let ((commit "faf2c08452f18763e541bc7f121760669ac0f41a")
+        (revision "0"))
+    (package
+      (name "sbcl-hunchensocket")
+      (version (git-version "1.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/joaotavora/hunchensocket/")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1vhd009lwl62l1czmhsalblxmyz4x9v3nspjflpajwm1db5rnd7h"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs (list sbcl-fiasco))
+      (inputs
+       (list
+        sbcl-hunchentoot
+        sbcl-alexandria
+        sbcl-cl-base64
+        sbcl-sha1
+        sbcl-flexi-streams
+        sbcl-chunga
+        sbcl-trivial-utf-8
+        sbcl-trivial-backtrace
+        sbcl-cl-fad))
+      (home-page "https://github.com/joaotavora/hunchensocket")
+      (synopsis "WebSockets extension for Huchentoot")
+      (description "This library provides a WebSockets extension for the Huchentoot web server.")
+      (license license:expat))))
+
+(define-public sbcl-websocket-driver
+  (let ((commit "17ba5535fb1c4fe43e7e8ac786e8b61a174fcba3")
+        (revision "0"))
+    (package
+      (name "sbcl-websocket-driver")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/fukamachi/websocket-driver")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "1lj6xarr62199ladkml7qpgi86w94j4djrp54v9ch0zakni3rhj2"))))
+      (build-system asdf-build-system/sbcl)
+      (inputs
+       (list
+        sbcl-fast-websocket
+        sbcl-fast-io
+        sbcl-event-emitter
+        sbcl-sha1
+        sbcl-cl-base64
+        sbcl-split-sequence
+        sbcl-bordeaux-threads
+        sbcl-babel
+        sbcl-clack))
+      (home-page "https://github.com/fukamachi/websocket-driver/")
+      (synopsis "WebSocket server and client implementation in Common Lisp")
+      (description "This library provides a WebSocket server and client implementation in Common Lisp.
+It is designed to work with @code{cl-clack}, and has a replacable backend.")
+      (license license:bsd-2))))
+
+(define-public sbcl-trivial-ws
+  (let ((commit "ebf1ec0ea26bdac4007e98e89f3a621dbfb4390a")
+        (revision "0"))
+    (package
+      (name "sbcl-trivial-ws")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/ceramic/trivial-ws/")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0qmsf0dhmyhjgqjzdgj2yb1nkrijwp4p1j411613i45xjc2zd6m7"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs
+       (list
+        sbcl-prove
+        sbcl-find-port))
+      (inputs
+       (list
+        sbcl-hunchensocket
+        sbcl-websocket-driver
+        sbcl-cl-async))
+      (home-page "https://github.com/ceramic/trivial-ws")
+      (synopsis "Common Lisp library for using WebSockets")
+      (description "A Common Lisp library implementing a simple interface for using WebSockets.")
+      (license license:expat))))
+
+(define-public sbcl-lisp-preprocessor
+  (let ((commit "cbed5952f3d98c84448c52d12255df9580451383")
+        (revision "0"))
+    (package
+      (name "sbcl-lisp-preprocessor")
+      (version (git-version "0.0.0" revision commit))
+      (source
+       (origin
+         (method git-fetch)
+         (uri (git-reference
+               (url "https://github.com/cxxxr/lisp-preprocessor/")
+               (commit commit)))
+         (file-name (git-file-name name version))
+         (sha256
+          (base32 "0v0qhawcvgbxk06nfwyvcqwmqvzn2svq80l2rb12myr0znschhpi"))))
+      (build-system asdf-build-system/sbcl)
+      (native-inputs (list sbcl-rove))
+      (inputs
+       (list
+        sbcl-alexandria
+        sbcl-trivial-gray-streams
+        sbcl-split-sequence
+        sbcl-trivia
+        sbcl-cl-ppcre))
+      (home-page "https://github.com/cxxxr/lisp-preprocessor")
+      (synopsis "Common Lisp embedded template engine")
+      (description "This is a embedded template engine for Common Lisp.
+It allows embedding Common Lisp code into text files that can expand out to be used as templates.")
+      (license license:expat))))
 
 (define-public sbcl-inquisitor
   (let ((commit "423fa9bdd4a68a6ae517b18406d81491409ccae8")
@@ -252,7 +401,7 @@ encoding/end-of-line detection and external-format abstraction for Common Lisp."
       (license license:expat))))
 
 (define lem
-  (let ((commit "e366bda73b7e5263cf9ba19678f9b958df48332b")
+  (let ((commit "2dcb47164bda78ff1eb8ccd2652f6d21676fde00")
         (revision "0"))
     (package
       (name "lem")
@@ -264,7 +413,7 @@ encoding/end-of-line detection and external-format abstraction for Common Lisp."
                (url "https://github.com/lem-project/lem/")
                (commit commit)))
          (sha256
-          (base32 "1p9i3111ybhbjnv0h3xmygcxrlja1h68hpmyhxhjq5gjwmwg5hv8"))
+          (base32 "1wdks9xwcj8anllg08ki6f0wf6rb6yi372rn2cnifw78y4d2b4nr"))
          (file-name (git-file-name name version))
          (snippet #~(begin
                       (use-modules (guix build utils))
@@ -282,7 +431,7 @@ encoding/end-of-line detection and external-format abstraction for Common Lisp."
                            "asdf:load-systems"))))
                     (add-after 'override-ql 'set-default-implementation
                                (lambda _
-                                 (substitute* "extensions/lisp-mode/implementation.lisp" 
+                                 (substitute* "extensions/lisp-mode/implementation.lisp"
                                               (("\\*default-command\\* nil") "*default-command* \"sbcl\""))))
                     (add-after 'set-default-implementation 'redirect-home
                       (lambda _
@@ -323,10 +472,15 @@ encoding/end-of-line detection and external-format abstraction for Common Lisp."
                sbcl-split-sequence
                sbcl-cl-str
                sbcl-dexador
+               sbcl-3bmd
+               sbcl-lisp-preprocessor
+               sbcl-trivial-ws
+               sbcl-trivial-open-browser
                ;; lem-sdl2
                sbcl-sdl2
                sbcl-sdl2-ttf
                sbcl-sdl2-image
+               sbcl-trivial-main-thread
                ;; lem-ncurses
                sbcl-cffi
                sbcl-cl-charms
