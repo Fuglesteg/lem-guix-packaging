@@ -220,6 +220,9 @@ server/client for Common Lisp.")
           (base32 "1jz27gz8gvqdmvp3k9bxschs6d5b3qgk94qp2bj6nv1d0jc3m1l1"))))
       (build-system asdf-build-system/sbcl)
       (arguments
+       ;; there is an issue with the asdf-build-system that mangles the system name due to the `-8`
+       ;; being interpreted as part of the version. specifiy the system name explicitly to prevent this
+       ;; from causing issues.
        '(#:asd-systems '("trivial-utf-8")))
       (home-page "https://github.com/fukamachi/trivial-utf-8")
       (synopsis "Common Lisp library for reading and writing UTF-8")
